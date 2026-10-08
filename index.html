@@ -65,7 +65,7 @@ p{margin:0}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
 .hero-copy{display:flex;flex-direction:column;gap:26px}
 .pill{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:#dbe4ee;font-size:14px}
-.pill b{padding:4px 10px;border-radius:999px;background:var(--yellow);color:var(--yellow-ink);font-size:12px}
+.pill b{white-space:nowrap;flex-shrink:0;padding:4px 10px;border-radius:999px;background:var(--yellow);color:var(--yellow-ink);font-size:12px}
 .pill:hover{color:var(--text);border-color:rgba(255,255,255,.3)}
 .hero h1{font-size:clamp(44px,6.4vw,78px);line-height:1;font-weight:800;letter-spacing:-.04em}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
@@ -312,6 +312,12 @@ footer{border-top:1px solid var(--line);padding-block:40px}
 .foot-links a{color:var(--soft)}
 .small{font-size:13px;color:var(--muted)}
 
+/* emoji fx */
+#fx{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:45}
+.phone.boom{animation:boom .5s var(--ease)}
+@keyframes boom{30%{transform:scale(1.035) rotate(-1deg)}60%{transform:scale(.99) rotate(.6deg)}}
+.pill span{min-width:0}
+
 /* reveal: only applied by JS to elements below the first screen */
 .rv.pending{opacity:0;transform:translateY(32px)}
 .rv{transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
@@ -326,6 +332,7 @@ footer{border-top:1px solid var(--line);padding-block:40px}
 </head>
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -349,7 +356,7 @@ footer{border-top:1px solid var(--line);padding-block:40px}
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <a class="pill fade-up" href="#equipe"><b>V1 en test</b>Un projet du groupe EVARS · collège Alfred Crouzet →</a>
+        <a class="pill fade-up" href="mailto:lucas.le-coadou@ac-montpellier.fr?subject=D%C3%A9clic%20%E2%80%94%20retour%20b%C3%AAta-test"><b>Phase de bêta-test</b><span>Nous recueillons vos avis et modifions à partir de vos retours →</span></a>
         <h1>
           <span class="line"><span>Le téléphone</span></span>
           <span class="line"><span>qui fait <span class="accent-word">réfléchir.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 70 4, 150 4, 296 12"/></svg></span></span></span>
@@ -453,17 +460,17 @@ footer{border-top:1px solid var(--line);padding-block:40px}
           <p>Scénario destiné aux 5e pour travailler la question de l'identité numérique.</p>
           <span class="status theme">Identité numérique</span>
         </article>
-        <article class="story feat rv tilt" style="--d:.08s">
+        <article class="story feat rv tilt" style="--d:.08s" data-emoji="💬📸😬👀💔🙊">
           <div class="top"><span class="ic" style="background:#f2735f"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span class="lvl">4e</span></div>
           <h3>Papote</h3>
           <p>« Ça devait rester entre nous… » Une photo qui circule, un groupe qui s'emballe : le cyberharcèlement vécu de l'intérieur.</p>
-          <a class="status ok" href="https://storylab-snowy.vercel.app/" target="_blank" rel="noopener">Disponible · Ouvrir →</a>
+          <a class="status ok" href="https://storylab-snowy.vercel.app/s/ca-devait-rester-entre-nous" target="_blank" rel="noopener">Disponible · Ouvrir →</a>
         </article>
-        <article class="story feat rv tilt" style="--d:.16s">
+        <article class="story feat rv tilt" style="--d:.16s" data-emoji="📍🎉🍕👀📱😳">
           <div class="top"><span class="ic" style="background:#ff8a3d"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><span class="lvl">4e</span></div>
           <h3>Clan</h3>
           <p>« Sous contrôle : une soirée qui dérape ». Quand partager sa position entre amis devient une affaire de contrôle.</p>
-          <a class="status ok" href="https://storylab-snowy.vercel.app/" target="_blank" rel="noopener">Disponible · Ouvrir →</a>
+          <a class="status ok" href="https://storylab-snowy.vercel.app/s/sous-controle-une-soiree-qui-derape" target="_blank" rel="noopener">Disponible · Ouvrir →</a>
         </article>
         <article class="story rv tilt" style="--d:.24s">
           <div class="top"><span class="ic" style="background:#8b6cf0"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="3"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8.5 7l1.5-2.5h4L15.5 7"/></svg></span><span class="lvl">3e</span></div>
@@ -677,6 +684,93 @@ function bubble(m){
  return d;
 }
 
+/* ---------- emoji fx : réactions qui jaillissent du téléphone ---------- */
+function EmojiFX(){
+ const SETS={
+  mix:[...'💬❤️😂😮👀🔥📸📍✨👍😱💡🤔💜'],
+  notif:[...'💬🔔💬📩'],
+  look:[...'😱👀📸💔😬'],
+  talk:[...'💬🤝❤️✨🙌'],
+  report:[...'🛡️✅🚨👍💪'],
+  end:[...'💡💡💡✨🎉💬🤔'],
+  live:[...'❤️😂😮👍🔥💜']
+ };
+ // Array.from(...) découpe parfois les sélecteurs de variante : on regroupe proprement.
+ const seg=window.Intl&&Intl.Segmenter?new Intl.Segmenter('fr',{granularity:'grapheme'}):null;
+ const split=s=>seg?[...seg.segment(s)].map(x=>x.segment):[...s];
+ for(const k in SETS)SETS[k]=split(SETS[k].join('')).filter(c=>c.trim()&&c!=='\uFE0F');
+ const off=RM;
+ const c=$('#fx');
+ if(off||!c)return{burst(){},ambient(){}};
+ const x=c.getContext('2d');
+ const DPR=Math.min(window.devicePixelRatio||1,2);
+ const small=()=>window.innerWidth<640;
+ let W,H,parts=[],raf=0,lastY=window.scrollY;
+ const cache=new Map();
+ function sprite(e){
+  if(cache.has(e))return cache.get(e);
+  const s=64,o=document.createElement('canvas');o.width=o.height=s*1.25;
+  const g=o.getContext('2d');g.textAlign='center';g.textBaseline='middle';
+  g.font=`${s}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`;
+  g.fillText(e,o.width/2,o.height/2+s*.06);cache.set(e,o);return o;
+ }
+ function size(){W=c.width=innerWidth*DPR;H=c.height=innerHeight*DPR;}
+ size();addEventListener('resize',size);
+ addEventListener('scroll',()=>{const dy=window.scrollY-lastY;lastY=window.scrollY;if(dy)parts.forEach(p=>p.y-=dy*DPR);},{passive:true});
+ function add(p){parts.push(p);if(!raf)raf=requestAnimationFrame(tick);}
+ let prev=0;
+ function tick(t){
+  const dt=Math.min(32,prev?t-prev:16)/16.67;prev=t;
+  x.clearRect(0,0,W,H);
+  parts=parts.filter(p=>p.life>0&&p.y<H+120*DPR&&p.y>-200*DPR);
+  for(const p of parts){
+   p.age+=dt;p.life-=dt;
+   if(p.kind==='float'){p.y+=p.vy*dt;p.x=p.x0+Math.sin(p.age*p.wf+p.ph)*p.wa;}
+   else{p.vy+=p.g*dt;p.vx*=.992;p.x+=p.vx*dt;p.y+=p.vy*dt;p.rot+=p.vr*dt;}
+   const inT=Math.min(1,p.age/6),outT=Math.min(1,p.life/22);
+   const sc=p.s*(p.kind==='float'?(.6+.4*inT):(.4+.6*Math.min(1,p.age/5)));
+   x.save();x.globalAlpha=Math.max(0,Math.min(inT,outT))*p.a;x.translate(p.x,p.y);x.rotate(p.rot);
+   const sp=sprite(p.e),d=sc*DPR;x.drawImage(sp,-d/2,-d/2,d,d);x.restore();
+  }
+  if(parts.length)raf=requestAnimationFrame(tick);else{raf=0;prev=0;x.clearRect(0,0,W,H);}
+ }
+ const pick=a=>a[Math.random()*a.length|0];
+ function burst(el,o={}){
+  if(!el)return;
+  const r=el.getBoundingClientRect();
+  if(r.bottom<0||r.top>innerHeight)return;
+  const set=Array.isArray(o.set)?o.set:(SETS[o.set]||SETS.mix);
+  const n=Math.round((o.n||30)*(small()?.55:1));
+  if(o.big&&el.classList){el.classList.remove('boom');void el.offsetWidth;el.classList.add('boom');}
+  for(let i=0;i<n;i++){
+   let sx,sy,ang,spd;
+   if(o.at){sx=o.at[0];sy=o.at[1];ang=-Math.PI/2+(Math.random()-.5)*2.2;spd=6+Math.random()*8;}
+   else if(o.from==='top'){sx=r.left+r.width*(.3+Math.random()*.4);sy=r.top+r.height*.06;ang=-Math.PI/2+(Math.random()-.5)*1.9;spd=9+Math.random()*12;}
+   else if(o.from==='bottom'){sx=r.left+r.width*(.15+Math.random()*.7);sy=r.top+r.height*.82;ang=-Math.PI/2+(Math.random()-.5)*2.1;spd=10+Math.random()*12;}
+   else{sx=r.left+r.width/2;sy=r.top+r.height*(o.small?.5:.42);ang=Math.random()*Math.PI*2;spd=(o.small?3:7)+Math.random()*(o.small?6:13);}
+   if(o.big)spd*=1.12;
+   add({kind:'pop',e:pick(set),x:sx*DPR,y:sy*DPR,vx:Math.cos(ang)*spd*DPR*.55,vy:Math.sin(ang)*spd*DPR*.75,
+    g:(o.small?.28:.36)*DPR,rot:(Math.random()-.5)*.6,vr:(Math.random()-.5)*.12,
+    s:(o.small?20:26)+Math.random()*(o.big?30:20),a:1,age:0,life:80+Math.random()*50});
+  }
+ }
+ function ambient(el){
+  let vis=true;
+  new IntersectionObserver(es=>vis=es[0].isIntersecting,{threshold:.2}).observe(el);
+  (function loop(){
+   if(vis&&!document.hidden){
+    const r=el.getBoundingClientRect(),right=Math.random()<.65;
+    const x0=(right?r.right-28-Math.random()*30:r.left+28+Math.random()*30)*DPR;
+    add({kind:'float',e:pick(SETS.live),x0,x:x0,y:(r.bottom-90)*DPR,vy:-(1.1+Math.random()*.9)*DPR,
+     wa:(8+Math.random()*14)*DPR,wf:.05+Math.random()*.04,ph:Math.random()*6,rot:(Math.random()-.5)*.4,
+     s:20+Math.random()*14,a:.95,age:0,life:150+Math.random()*60});
+   }
+   setTimeout(loop,small()?1400:650+Math.random()*700);
+  })();
+ }
+ return{burst,ambient};
+}
+
 /* ---------- hero demo ---------- */
 function Demo(el){
  buildPhone(el);
@@ -684,7 +778,7 @@ function Demo(el){
  const scr={home:q('[data-s=home]'),chat:q('[data-s=chat]'),end:q('[data-s=end]')};
  const notif=q('.notif'),tap=q('.tap'),msgs=q('.msgs'),choices=q('.choices'),papote=q('[data-app=papote]');
  const hint=$('#demoHint');
- let run=0,visible=true,auto=0,userTouched=false;
+ let run=0,visible=true,auto=0,userTouched=false,endDone=false;
  const sleep=ms=>new Promise(r=>setTimeout(r,RM?Math.min(ms,50):ms));
  async function wait(ms,id){await sleep(ms);while(!visible&&id===run)await sleep(250);return id===run;}
  function show(k){for(const n in scr)scr[n].classList.toggle('on',n===k);}
@@ -717,12 +811,13 @@ function Demo(el){
   hint.textContent='À vous : choisissez une réponse';
   const pick=await offer(id);
   if(id!==run)return;
+  if(userTouched)FX.burst(el,{set:['look','talk','report'][pick],n:26,from:'bottom'});
   hint.textContent='Démo · cliquez sur un choix';
   if(!await wait(450,id))return;
   choices.classList.remove('on');
   for(const m of CHOICES[pick].then){if(!await type(m,id))return;}
   if(!await wait(2600,id))return;
-  show('end');
+  show('end');if(userTouched&&!endDone){endDone=true;FX.burst(el,{set:'end',n:40,from:'center',big:true});}
   if(RM)return;
   if(!await wait(3000,id))return;
   play();
@@ -732,9 +827,13 @@ function Demo(el){
  document.addEventListener('visibilitychange',()=>{if(document.hidden)visible=false;});
  return {play,replay:()=>{userTouched=false;play();}};
 }
+/* ---------- emoji fx (déclarée avant la démo) ---------- */
+const FX=EmojiFX();
 const demo=Demo($('#demoPhone'));
 demo.play();
 $('#replay').addEventListener('click',demo.replay);
+setTimeout(()=>FX.burst($('#demoPhone'),{set:'mix',n:70,from:'top',big:true}),1300);
+document.querySelectorAll('.story[data-emoji]').forEach(c=>{c.addEventListener('pointerenter',()=>{FX.burst(c.querySelector('.ic'),{set:[...c.dataset.emoji],n:14,from:'center',small:true});},{once:true});});
 
 /* ---------- sticky step phone ---------- */
 (function(){
